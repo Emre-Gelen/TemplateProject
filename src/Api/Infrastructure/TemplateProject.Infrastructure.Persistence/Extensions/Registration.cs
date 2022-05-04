@@ -15,6 +15,7 @@ namespace TemplateProject.Infrastructure.Persistence.Extensions
                 conf.UseSqlServer(connectionString);
             
             });
+            //new SeedData().SeedAsync(configuration).GetAwaiter().GetResult(); Only run once to create temp data.
 
             return services;
         }

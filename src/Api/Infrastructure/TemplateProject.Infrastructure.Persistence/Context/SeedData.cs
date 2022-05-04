@@ -35,7 +35,6 @@ namespace TemplateProject.Infrastructure.Persistence.Context
             var context = new TemplateProjectContext(dbContextBuilder.Options);
 
             var users = GetUsers();
-            var userIds = users.Select(u => u.Id).ToList();
 
             await context.Users.AddRangeAsync(users);
 

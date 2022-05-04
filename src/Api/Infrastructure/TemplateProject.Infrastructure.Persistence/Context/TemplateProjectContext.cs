@@ -13,7 +13,6 @@ namespace TemplateProject.Infrastructure.Persistence.Context
 {
     public class TemplateProjectContext : DbContext
     {
-        private const string DEFAULT_SCHEMA = "dbo";
         public TemplateProjectContext(DbContextOptions options) : base(options) { }
 
         public DbSet<User> Users { get; set; }

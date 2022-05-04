@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TemplateProject.Common.Bases;
+﻿using TemplateProject.Common.Bases;
 
 namespace TemplateProject.Api.Domain.Entities
 {

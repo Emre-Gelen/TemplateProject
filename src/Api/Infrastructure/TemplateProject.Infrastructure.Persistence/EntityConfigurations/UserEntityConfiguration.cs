@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using TemplateProject.Api.Domain.Entities;
 
 namespace TemplateProject.Infrastructure.Persistence.EntityConfigurations

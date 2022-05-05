@@ -14,7 +14,7 @@ namespace TemplateProject.Infrastructure.Persistence.Extensions
             services.AddDbContext<TemplateProjectContext>(conf =>
             {
                 var connectionString = configuration["TemplateProjectDbConnectionString"].ToString();
-                conf.UseSqlServer(connectionString);
+                conf.UseSqlServer(connectionString,opt => opt.EnableRetryOnFailure());
             
             });
             //new SeedData().SeedAsync(configuration).GetAwaiter().GetResult(); Only run once to create temp data.

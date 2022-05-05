@@ -1,13 +1,20 @@
+using FluentValidation.AspNetCore;
+using TemplateProject.Api.Application.Extensions;
 using TemplateProject.Infrastructure.Persistence.Extensions;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services
+    .AddControllers()
+    .AddFluentValidation();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddApplicationRegistration();
 builder.Services.AddInfrastructureRegistration(builder.Configuration);
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

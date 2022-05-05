@@ -28,12 +28,7 @@ namespace TemplateProject.Api.Application.Repositories
         Task<int> AddOrUpdateAsync(TEntity entity);
         int AddOrUpdate(TEntity entity);
 
-        Task BulkDeleteById(IEnumerable<Guid> ids);
-        Task BulkDelete(IEnumerable<TEntity> entities);
-        Task BulkDelete(Expression<Func<TEntity, bool>> expression);
-        Task BulkUpdate(IEnumerable<TEntity> entities);
-        Task BulkAdd(IEnumerable<TEntity> entities);
-
         Task<int> SaveAsync();
+        int Save();
     }
 }

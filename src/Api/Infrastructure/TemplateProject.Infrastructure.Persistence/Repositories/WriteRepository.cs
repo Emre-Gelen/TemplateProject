@@ -122,30 +122,6 @@ namespace TemplateProject.Infrastructure.Persistence.Repositories
             return _dbContext.SaveChanges();
         }
 
-        public virtual async Task BulkDeleteById(IEnumerable<Guid> ids)
-        {
-            throw new NotImplementedException();
-        }
-
-        public virtual async Task BulkDelete(IEnumerable<TEntity> entities)
-        {
-            throw new NotImplementedException();
-        }
-
-        public virtual async Task BulkDelete(Expression<Func<TEntity, bool>> expression)
-        {
-            throw new NotImplementedException();
-        }
-
-        public virtual async Task BulkUpdate(IEnumerable<TEntity> entities)
-        {
-            throw new NotImplementedException();
-        }
-
-        public virtual async Task BulkAdd(IEnumerable<TEntity> entities)
-        {
-            throw new NotImplementedException();
-        }
         public async Task<int> SaveAsync()
             => await _dbContext.SaveChangesAsync();
         public int Save()

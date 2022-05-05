@@ -1,22 +1,16 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 using TemplateProject.Api.Application.Repositories;
 using TemplateProject.Common.Bases;
-using TemplateProject.Infrastructure.Persistence.Context;
 
 namespace TemplateProject.Infrastructure.Persistence.Repositories
 {
     public class WriteRepository<TEntity> : IWriteRepository<TEntity> where TEntity : BaseEntity
     {
-        private readonly TemplateProjectContext _dbContext;
+        private readonly DbContext _dbContext;
         protected DbSet<TEntity> entity => _dbContext.Set<TEntity>();
 
-        public WriteRepository(TemplateProjectContext dbContext)
+        public WriteRepository(DbContext dbContext)
         {
             _dbContext = dbContext;
         }
@@ -80,7 +74,7 @@ namespace TemplateProject.Infrastructure.Persistence.Repositories
 
         public virtual async Task<bool> RemoveRangeAsync(Expression<Func<TEntity, bool>> expression)
         {
-            _dbContext.RemoveRange(expression);
+            _dbContext.RemoveRange(entity.Where(expression));
             return await _dbContext.SaveChangesAsync() > 0;
         }
 
@@ -103,7 +97,7 @@ namespace TemplateProject.Infrastructure.Persistence.Repositories
 
         public virtual bool RemoveRange(Expression<Func<TEntity, bool>> expression)
         {
-            _dbContext.RemoveRange(expression);
+            _dbContext.RemoveRange(entity.Where(expression));
             return _dbContext.SaveChanges() > 0;
         }
 

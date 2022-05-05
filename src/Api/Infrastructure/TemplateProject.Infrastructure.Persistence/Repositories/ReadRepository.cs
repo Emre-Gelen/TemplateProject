@@ -1,21 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 using TemplateProject.Api.Application.Repositories;
 using TemplateProject.Common.Bases;
-using TemplateProject.Infrastructure.Persistence.Context;
 
 namespace TemplateProject.Infrastructure.Persistence.Repositories
 {
     public class ReadRepository<TEntity> : IReadRepository<TEntity> where TEntity : BaseEntity
     {
-        private readonly TemplateProjectContext _dbContext;
+        private readonly DbContext _dbContext;
         protected DbSet<TEntity> entity => _dbContext.Set<TEntity>();
-        public ReadRepository(TemplateProjectContext dbContext)
+        public ReadRepository(DbContext dbContext)
         {
             _dbContext = dbContext;
         }
@@ -36,7 +30,7 @@ namespace TemplateProject.Infrastructure.Persistence.Repositories
 
         public virtual async Task<List<TEntity>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await entity.ToListAsync();
         }
 
         public virtual async Task<TEntity> GetByIdAsync(Guid id, bool noTracking = true, params Expression<Func<TEntity, object>>[] includes)

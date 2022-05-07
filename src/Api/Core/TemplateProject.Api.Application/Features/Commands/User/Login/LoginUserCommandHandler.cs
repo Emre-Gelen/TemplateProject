@@ -11,7 +11,7 @@ using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 
-namespace TemplateProject.Api.Application.Features.Commands.User
+namespace TemplateProject.Api.Application.Features.Commands.User.Login
 {
     public class LoginUserCommandHandler : IRequestHandler<LoginUserCommandModel, LoginUserViewModel>
     {

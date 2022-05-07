@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TemplateProject.Api.Domain.Entities;
+using TemplateProject.Common.Models.CommandModels;
 using TemplateProject.Common.Models.ViewModels;
 
 namespace TemplateProject.Api.Application.Mapping
@@ -15,6 +16,11 @@ namespace TemplateProject.Api.Application.Mapping
         {
             CreateMap<User, LoginUserViewModel>()
                 .ReverseMap();
+
+            CreateMap<User, CreateUserCommandModel>()
+                .ReverseMap();
+            
+            CreateMap<UpdateUserCommandModel, User>()
         }
     }
 }

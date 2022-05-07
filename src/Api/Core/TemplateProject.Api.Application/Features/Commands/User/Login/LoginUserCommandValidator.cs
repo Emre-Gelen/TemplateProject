@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TemplateProject.Common.Models.CommandModels;
 
-namespace TemplateProject.Api.Application.Features.Commands.User
+namespace TemplateProject.Api.Application.Features.Commands.User.Login
 {
     public class LoginUserCommandValidator : AbstractValidator<LoginUserCommandModel>
     {

@@ -24,6 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Features\Commands\User\Create\" />
     <Folder Include="Features\Queries\" />
   </ItemGroup>
 

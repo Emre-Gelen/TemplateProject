@@ -19,8 +19,8 @@ namespace TemplateProject.Api.Application.Mapping
 
             CreateMap<User, CreateUserCommandModel>()
                 .ReverseMap();
-            
-            CreateMap<UpdateUserCommandModel, User>()
+
+            CreateMap<UpdateUserCommandModel, User>();
         }
     }
 }

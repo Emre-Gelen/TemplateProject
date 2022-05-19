@@ -24,5 +24,22 @@ namespace TemplateProject.Api.WebAPI.Controllers
 
             return Ok(result);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Create([FromBody] CreateUserCommandModel command)
+        {
+            var guid = await _mediator.Send(command);
+
+            return Ok(guid);
+        }
+
+        [HttpPost]
+        [Route("update")]
+        public async Task<IActionResult> Update([FromBody] UpdateUserCommandModel command)
+        {
+            var guid = await _mediator.Send(command);
+
+            return Ok(guid);
+        }
     }
 }

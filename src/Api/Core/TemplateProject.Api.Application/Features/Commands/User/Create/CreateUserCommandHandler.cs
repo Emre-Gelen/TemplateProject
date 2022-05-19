@@ -9,6 +9,9 @@ using TemplateProject.Api.Application.Repositories;
 using TemplateProject.Common.Infrastructure.Exceptions;
 using TemplateProject.Common.Models.CommandModels;
 using TemplateProject.Api.Domain.Entities;
+using TemplateProject.Common.Infrastructure;
+using TemplateProject.Common.Events.User;
+using TemplateProject.Common;
 
 namespace TemplateProject.Api.Application.Features.Commands.User.Create
 {
@@ -27,14 +30,27 @@ namespace TemplateProject.Api.Application.Features.Commands.User.Create
 
         async Task<Guid> IRequestHandler<CreateUserCommandModel, Guid>.Handle(CreateUserCommandModel request, CancellationToken cancellationToken)
         {
-            var existUser = await _userReadRepository.GetSingleAsync(user => user.EmailAdress == request.EmailAddress);
+            var existUser = await _userReadRepository.GetSingleAsync(user => user.EmailAddress == request.EmailAddress);
 
             if (existUser is not null)
                 throw new DatabaseValidationException("User already exists!");
 
-            var newUser = _mapper.Map<Domain.Entities.User>(existUser);
+            var newUser = _mapper.Map<Domain.Entities.User>(request);
 
             var rows = await _userWriteRepository.AddAsync(newUser);
+
+            if (rows > 0)
+            {
+                var @event = new UserEmailChangedEvent()
+                {
+                    OldEmailAdress = null,
+                    NewEmailAdress = newUser.EmailAddress,
+                };
+                QueueFactory.SendMessageToExchange(exchangeName: Constants.UserExchangeName,
+                                                   exchangeType: Constants.DefaultExchangeType,
+                                                   queueName: Constants.UserEmailChangedQueueName,
+                                                   obj: @event);
+            }
 
             return newUser.Id;
         }

@@ -6,6 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TemplateProject.Api.Application.Repositories;
+using TemplateProject.Common;
+using TemplateProject.Common.Events.User;
+using TemplateProject.Common.Infrastructure;
 using TemplateProject.Common.Infrastructure.Exceptions;
 using TemplateProject.Common.Models.CommandModels;
 
@@ -31,9 +34,27 @@ namespace TemplateProject.Api.Application.Features.Commands.User.Update
             if (dbUser is null)
                 throw new DatabaseValidationException("User not found!");
 
+            var dbEmilAdress = dbUser.EmailAddress;
+            var emailChanged = string.CompareOrdinal(dbEmilAdress, request.EmailAddress) != 0;
+
             _mapper.Map(request, dbUser);
 
             var rows = await _userWriteRepository.UpdateAsync(dbUser);
+
+            if (rows > 0 && emailChanged)
+            {
+                var @event = new UserEmailChangedEvent()
+                {
+                    OldEmailAdress = dbEmilAdress,
+                    NewEmailAdress = dbUser.EmailAddress,
+                };
+                QueueFactory.SendMessageToExchange(exchangeName: Constants.UserExchangeName,
+                                                   exchangeType: Constants.DefaultExchangeType,
+                                                   queueName: Constants.UserEmailChangedQueueName,
+                                                   obj: @event);
+                dbUser.EmailConfirmed = false;
+                await _userWriteRepository.UpdateAsync(dbUser);
+            }
 
             return dbUser.Id;
         }

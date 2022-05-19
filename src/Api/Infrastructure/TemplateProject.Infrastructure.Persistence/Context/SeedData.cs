@@ -20,7 +20,7 @@ namespace TemplateProject.Infrastructure.Persistence.Context
                 .RuleFor(prop => prop.CreateDate, prop => prop.Date.Between(DateTime.Now.AddDays(-250), DateTime.Now))
                 .RuleFor(prop => prop.FirstName, prop => prop.Person.FirstName)
                 .RuleFor(prop => prop.LastName, prop => prop.Person.LastName)
-                .RuleFor(prop => prop.EmailAdress, prop => prop.Internet.Email())
+                .RuleFor(prop => prop.EmailAddress, prop => prop.Internet.Email())
                 .RuleFor(prop => prop.UserName, prop => prop.Internet.UserName())
                 .RuleFor(prop => prop.Password, prop => PasswordEncryption.Encrypt(prop.Internet.Password()))
                 .RuleFor(prop => prop.EmailConfirmed, prop => prop.PickRandom(true, false))

@@ -41,12 +41,12 @@ namespace TemplateProject.Infrastructure.Persistence.Context
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default(CancellationToken))
         {
             OnBeforeSave();
-            return SaveChangesAsync(acceptAllChangesOnSuccess: true, cancellationToken);
+            return base.SaveChangesAsync(acceptAllChangesOnSuccess: true, cancellationToken);
         }
         public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default(CancellationToken))
         {
             OnBeforeSave();
-            return SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
+            return base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
         }
         private void OnBeforeSave()
         {

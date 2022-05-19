@@ -30,7 +30,7 @@ namespace TemplateProject.Api.Application.Features.Commands.User.Login
 
         public async Task<LoginUserViewModel> Handle(LoginUserCommandModel request, CancellationToken cancellationToken)
         {
-            var dbUser = await _userReadRepository.GetSingleAsync(user => user.EmailAdress == request.EmailAddress);
+            var dbUser = await _userReadRepository.GetSingleAsync(user => user.EmailAddress == request.EmailAddress);
 
             if (dbUser == null)
                 throw new DatabaseValidationException("User not found!");
@@ -47,7 +47,7 @@ namespace TemplateProject.Api.Application.Features.Commands.User.Login
 
             var claims = new Claim[] { 
                 new Claim(ClaimTypes.NameIdentifier, dbUser.Id.ToString()),
-                new Claim(ClaimTypes.Email, dbUser.EmailAdress),
+                new Claim(ClaimTypes.Email, dbUser.EmailAddress),
                 new Claim(ClaimTypes.Name, dbUser.UserName),
                 new Claim(ClaimTypes.GivenName, dbUser.FirstName),
                 new Claim(ClaimTypes.Surname, dbUser.LastName),

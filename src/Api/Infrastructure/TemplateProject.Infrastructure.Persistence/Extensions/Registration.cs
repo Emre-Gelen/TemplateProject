@@ -21,6 +21,10 @@ namespace TemplateProject.Infrastructure.Persistence.Extensions
 
             services.AddScoped<IUserReadRepository, UserReadRepository>();
             services.AddScoped<IUserWriteRepository, UserWriteRepository>();
+
+            services.AddScoped<IEmailConfirmationReadRepository, EmailConfirmationReadRepository>();
+            services.AddScoped<IEmailConfirmationWriteRepository, EmailConfirmationWriteRepository>();
+
             return services;
         }
     }

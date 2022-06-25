@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using TemplateProject.Api.Application.Repositories;
+﻿using TemplateProject.Api.Application.Repositories;
 using TemplateProject.Api.Domain.Entities;
 using TemplateProject.Infrastructure.Persistence.Context;
 

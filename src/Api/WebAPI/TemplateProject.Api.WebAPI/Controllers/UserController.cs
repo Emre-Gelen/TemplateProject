@@ -7,7 +7,7 @@ namespace TemplateProject.Api.WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UserController : ControllerBase
+    public class UserController : BaseController
     {
         private readonly IMediator _mediator;
 
@@ -40,6 +40,22 @@ namespace TemplateProject.Api.WebAPI.Controllers
             var guid = await _mediator.Send(command);
 
             return Ok(guid);
+        }
+
+        [HttpPost]
+        [Route("Confirm")]
+        public async Task<IActionResult> ConfirmEmail([FromBody]  ConfirmEmailCommandModel command)
+        {
+            var res = await _mediator.Send(command);
+            return Ok(res);
+        }
+
+        [HttpPost]
+        [Route("ChangePassword")]
+        public async Task<IActionResult> ChangePassword([FromBody] ChangeUserPasswordCommandModel command)
+        {
+            var res = await _mediator.Send(command);
+            return Ok(res);
         }
     }
 }

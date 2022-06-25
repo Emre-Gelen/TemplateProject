@@ -17,8 +17,10 @@ namespace TemplateProject.Api.Application.Features.Commands.User.ConfirmEmail
         private readonly IUserWriteRepository _userWriteRepository;
         private readonly IUserReadRepository _userReadRepository;
 
-        public ConfirmEmailCommandHandler(IEmailConfirmationWriteRepository emailConfirmationWriteRepository, IEmailConfirmationReadRepository emailConfirmationReadRepository, IUserWriteRepository userWriteRepository, IUserReadRepository userReadRepository) : this(emailConfirmationWriteRepository, emailConfirmationReadRepository)
+        public ConfirmEmailCommandHandler(IEmailConfirmationWriteRepository emailConfirmationWriteRepository, IEmailConfirmationReadRepository emailConfirmationReadRepository, IUserWriteRepository userWriteRepository, IUserReadRepository userReadRepository)
         {
+            _emailConfirmationWriteRepository = emailConfirmationWriteRepository;
+            _emailConfirmationReadRepository = emailConfirmationReadRepository;
             _userWriteRepository = userWriteRepository;
             _userReadRepository = userReadRepository;
         }

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TemplateProject.Infrastructure.Persistence.Context;
 
@@ -11,9 +12,10 @@ using TemplateProject.Infrastructure.Persistence.Context;
 namespace TemplateProject.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(TemplateProjectContext))]
-    partial class TemplateProjectContextModelSnapshot : ModelSnapshot
+    [Migration("20220625130421_AddedEmailConfirmation")]
+    partial class AddedEmailConfirmation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

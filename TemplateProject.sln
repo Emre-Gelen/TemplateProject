@@ -35,8 +35,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemplateProject.Api.Domain"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Projections", "Projections", "{4CB24B50-CB22-45F1-9F68-E49450580C0C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemplateProject.Projections.FavoriteService", "src\Projections\TemplateProject.Projections.FavoriteService\TemplateProject.Projections.FavoriteService.csproj", "{48FF9F60-BACE-4CC3-8B33-30D6CAA7565D}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemplateProject.Projections.UserService", "src\Projections\TemplateProject.Projections.UserService\TemplateProject.Projections.UserService.csproj", "{1F003378-E79A-4252-8F11-21A4C245F8E1}"
 EndProject
 Global
